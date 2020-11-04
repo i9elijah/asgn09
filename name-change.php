@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--	Author: 
-		Date:	
+<!--	Author: Elijah Hume
+		Date:	11/3/2020
 		File:	name-change.php
 		Purpose:MySQL Exercise
 -->
@@ -13,13 +13,9 @@
 
 <body>
 <?php
+include_once("connection.php");
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
-
-$connect=mysqli_connect($server, $user, $pw, $db);
+$connect=mysqli_connect(SERVER, USER, PW, DB);
 
 if( !$connect) 
 {
@@ -27,9 +23,7 @@ if( !$connect)
 	using user name $user (".mysqli_connect_errno().
 	", ".mysqli_connect_error().")");
 }
-
-$userQuery = ""; // ADD QUERY
-
+$userQuery = "SELECT lastName, jobTitle FROM personnel WHERE empID = '12353' ";
 $result = mysqli_query($connect, $userQuery);
 
 if (!$result) 
@@ -37,12 +31,26 @@ if (!$result)
 	die("Could not successfully run query ($userQuery) from $db: " .	
 		mysqli_error($connect) );
 }
-else
-{
-	print("	<h1>UPDATE</h1>");
-	print ("<p>The employee update has been completed.</p>");
-}
 
+if (mysqli_num_rows($result) == 0) 
+{
+	print("No records found with query $userQuery");
+}
+else 
+{ 
+	print("<h1>LIST OF EMPLOYEES</h1>");
+
+	print("<table border = \"1\">");
+	print("<tr><th>Last Name</th><th>Job Title</th></tr>");
+
+
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		print ("<tr><td>".$row['lastName'].
+			"</td><td>".$row['jobTitle']."</td></tr>");
+	}
+	print("</table");
+}
 
 mysqli_close($connect);   // close the connection
  

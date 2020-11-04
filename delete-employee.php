@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--	Author: 
-		Date:	
+<!--	Author: Elijah Hume
+		Date:	11/3/2020
 		File:	delete-employee.php
 		Purpose:MySQL Exercise
 -->
@@ -15,12 +15,9 @@
 
 <?php
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
+include_once("connection.php");
 
-$connect=mysqli_connect($server, $user, $pw, $db);
+$connect=mysqli_connect(SERVER, USER, PW, DB);
 
 if( !$connect) 
 {
@@ -29,7 +26,7 @@ if( !$connect)
 	", ".mysqli_connect_error().")");
 }
 
-$empID = '99999'; /// CHANGE THIS TO THE ID OF THE RECORD YOU WISH TO DELETE
+$empID = '1234567'; /// CHANGE THIS TO THE ID OF THE RECORD YOU WISH TO DELETE
 
 $userQuery = "DELETE FROM personnel WHERE empID='$empID'";
 

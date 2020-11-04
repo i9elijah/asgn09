@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--	Author: Mike O'Kane
-		Date:	December, 2012
+<!--	Author: Elijah Hume
+		Date:	11/3/2020
 		File:	employees.php
 		Purpose: MySQL Code Exercise
 -->
@@ -14,12 +14,9 @@
 <body>
 <?php
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
+include_once("connection.php");
 
-$connect=mysqli_connect($server, $user, $pw, $db);
+$connect=mysqli_connect(SERVER, USER, PW, DB);
 
 if( !$connect) 
 {
